@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de Tarefas</title>
+    <link rel="stylesheet" href="css/style.css" />
+</head>
+
+<body>
+    <div id="tarefasApp">
+        <div class="container">
+            <h1>Controle suas Tarefas</h1>
+            <div class="formulario">
+                <h2>Adicionar tarefa</h2>
+                <form @submit="addTarefa">
+                    <input
+                        v-model="novaTarefa.titulo"
+                        type="text"
+                        placeholder="Titulo da tarefa"
+
+                    />
+                    <input class="botao" type="submit" value="Adicionar" />
+                </form>
+            </div>
+        </div>
+        <div class="container">
+            <h2 class="titulo-tabela">Tarefa a fazer</h2>
+            <table>
+                <thead>
+                    <th>Pronta</th>
+                    <th>Título</th>
+                    <th>Remover</th>
+                </thead>
+                <tbody>
+                    <tr v-for="tarefa in tarefas">
+                        <td class="col1">
+                            <input type="checkbox" v-model="tarefa.pronta" />
+                        </td>
+                        <td>
+                            <span :class="{ tarefaPronta: tarefa.pronta }">
+                                {{ tarefa.titulo }}
+                            </span>
+                        </td>
+                        <td class="col3" @click="removerTarefa(tarefa)">
+                            <button>Deleta</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <script src="js/vue.js"></script>
+    <script src="js/script.js"></script>
+</body>
+</html>
